@@ -1,0 +1,25 @@
+{
+  "author": "Mark Allen <mark@markcallen.com>",
+  "name": "passportauthexample",
+  "description": "A nodejs passport/express example using local, basic and facebook authenication",
+  "version": "0.1.0",
+  "homepage": "http://www.markcallen.com/",
+  "main": "app",
+  "engines": {
+    "node": "~0.6.11"
+  },
+  "dependencies": {
+    "express": "~2.5.9",
+    "mongoose": "~2.7.0",
+    "connect-mongo": "~0.1.9",
+    "passport": "~0.1.10",
+    "passport-local": "~0.1.3",
+    "passport-facebook": "~0.1.4",
+    "passport-http": "~0.2.1",
+    "node-uuid": "~1.3.3",
+    "nodemailer": "~0.3.43"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {}
+}
+
