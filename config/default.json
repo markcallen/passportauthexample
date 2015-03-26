@@ -1,0 +1,23 @@
+{
+  "Sessiondb": {
+    "host": "localhost",
+    "name": "express"
+  },
+
+  "Webserver": {
+    "port": "8888"
+  },
+
+  "DB": {
+    "uri": "mongodb://localhost/passportauthexample"
+  },
+
+  "Email": {
+    "senderaddress": "mark@markcallen.com"
+  },
+
+  "Server": {
+    "servername": "http://127.0.0.1:8888"
+  }
+
+}
