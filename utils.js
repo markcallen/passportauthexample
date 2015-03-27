@@ -6,6 +6,7 @@ var aws = require('config').AWS;
 
 // Setup SMTP
 //@TODO: need to change this to something that doesn't require AWS keys for testing
+
 var nodemailer = require("nodemailer");
 var ses = require('nodemailer-ses-transport');
 var transport = nodemailer.createTransport(ses({
