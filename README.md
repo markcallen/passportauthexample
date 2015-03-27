@@ -1,15 +1,14 @@
-passportauthexample
-===================
+# passportauthexample
 
 Example nodejs passport application with local, basic and facebook authenication
 
-Configure
----------
+## Configure
 
 Create config/local.json
 
 add the following:
 
+```
 {
   "AWS": {
     "awsAccessKey": "<your aws access key>",
@@ -22,10 +21,10 @@ add the following:
     "callbackURL": "http://localhost:8888/auth/facebook/callback"
   }
 }
+```
 
 
-Test
-----
+## Test
 
 in one window start up the app
 
