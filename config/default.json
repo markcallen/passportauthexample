@@ -18,6 +18,16 @@
 
   "Server": {
     "servername": "http://127.0.0.1:8888"
-  }
+  },
 
+  "AWS": {
+    "awsAccessKey": "",
+    "awsSecretKey": ""
+  },
+  
+  "Facebook": {
+    "appID": "",
+    "appSecret": "",
+    "callbackURL": "http://localhost:8888/auth/facebook/callback"
+  }
 }
