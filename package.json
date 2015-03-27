@@ -13,9 +13,7 @@
     "node": "0.10.x"
   },
   "dependencies": {
-    "aws-sdk": "2.1.x",
     "body-parser": "1.x",
-    "chef-api": "^0.5.1",
     "config": "0.4.x",
     "connect-mongo": "0.4.x",
     "connect-roles": "3.1.x",
@@ -23,7 +21,6 @@
     "express": "4.x",
     "express-session": "1.x",
     "fmt": "0.5.x",
-    "kue": "0.8.x",
     "method-override": "1.x",
     "mongodb": "1.4.x",
     "mongoose": "3.8.x",
@@ -45,7 +42,6 @@
     "grunt-concurrent": "^1.0.0",
     "grunt-contrib-copy": "^0.7.0",
     "grunt-contrib-jshint": "^0.10.0",
-    "grunt-contrib-livereload": "^0.1.2",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-git-revision": "0.0.1",
     "grunt-mocha-test": "^0.12.4",
