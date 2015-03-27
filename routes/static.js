@@ -4,7 +4,7 @@ module.exports = function(params) {
   var app = params.app;
 
   app.get('/', function (req, res) {
-    res.sendfile(__dirname + '/public/index.html');
+    res.render('index', { title: 'Hey', message: 'Hello there!'});
   });
 
   app.get('/favicon.ico', function (req, res) {
