@@ -77,8 +77,7 @@ module.exports = function (grunt) {
                 }
             },
             browserTemplates: {
-                files: ['public/js/**/*.html', 'public/index.html'],
-                tasks: ['jshint:browser'],
+                files: ['views/**/*.jade'],
                 options: {
                   livereload: true,
                 }
