@@ -40,8 +40,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(authorization.middleware());
 
+app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
-
 
 module.exports = function(params) {
   params.app = app;
