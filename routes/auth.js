@@ -3,6 +3,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var BasicStrategy = require('passport-http').BasicStrategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var facebook = require('config').Facebook;
+var localauth = require('config').LocalAuth;
 
 // Authentication
 
@@ -102,8 +103,8 @@ module.exports = function(params) {
   });
 
   app.post('/auth/login', function(req, res, next) {
-    var successUrl = (req.body.successUrl != null ? req.body.successUrl : '/#validlogin');
-    var failureUrl = (req.body.failureUrl != null ? req.body.failureUrl : '/#invalidlogin');
+    var successUrl = (req.body.successUrl != null ? req.body.successUrl : localauth.successUrl);
+    var failureUrl = (req.body.failureUrl != null ? req.body.failureUrl : localauth.failureUrl);
     passport.authenticate('local', function(err, user, info) {
       if (err) { return next(err); }
       if (!user) { return res.redirect(failureUrl); }

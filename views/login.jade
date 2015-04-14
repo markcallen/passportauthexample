@@ -4,4 +4,13 @@ block navbar
     +nav_item( "index.html" ) Home
     +nav_item( "login.html", "active" ) Login
 block content
-  p Login Screen
+  if message
+    .alert.alert-danger(role="alert")!= message
+  form(action='/auth/login',method='post')
+    .form-group
+      label(for=username) Email Address
+      input(type='email', class='form-control', id='username', placeholder='Enter Email')
+    .form-group
+      label(for=password) Password
+      input(type='password', class='form-control', id='password', placeholder='Password')
+    button(type='submit', class='btn btn-default') Submit

@@ -12,6 +12,13 @@
     "uri": "mongodb://localhost/passportauthexample"
   },
 
+  "LocalAuth": {
+    "loginUrl": "login.html",
+    "logoutUrl": "logout.html",
+    "successUrl": "private.html",
+    "failureUrl": "autherror.html"
+  },
+
   "Email": {
     "senderaddress": "mark@markcallen.com"
   },
