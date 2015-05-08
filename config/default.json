@@ -13,10 +13,11 @@
   },
 
   "LocalAuth": {
-    "loginUrl": "login.html",
-    "logoutUrl": "logout.html",
-    "successUrl": "private.html",
-    "failureUrl": "autherror.html"
+    "loginUrl": "/login.html",
+    "logoutUrl": "/logout.html",
+    "successUrl": "/private.html",
+    "loginFailureUrl": "/login.html",
+    "newAccountFailureUrl": "/newaccount.html"
   },
 
   "Email": {

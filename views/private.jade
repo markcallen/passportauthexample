@@ -1,7 +1,9 @@
 extends base
 block navbar
   +nav("Passport Auth Example ", "dropdown_menu")
-    +nav_item( "index.html", "active" ) Home
+    +nav_item( "index.html" ) Home
+    +nav_item( "account.html" ) Account
+    +nav_item( "private.html", "active" ) Private
     +nav_item( "logout.html" ) Logout
 block content
   p Successful login

@@ -16,10 +16,10 @@ var app = express();
 
 app.use(morgan('combined'));
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(methodOverride()); // must come after bodyParser
 app.use(session({
   secret:'mysecretcookie',

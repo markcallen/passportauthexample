@@ -59,7 +59,7 @@ module.exports = function(params) {
             return done(null, user);
           });
         }
-        ));
+  ));
 
 
   if (facebook.appID && facebook.appSecret) {
@@ -104,10 +104,15 @@ module.exports = function(params) {
 
   app.post('/auth/login', function(req, res, next) {
     var successUrl = (req.body.successUrl != null ? req.body.successUrl : localauth.successUrl);
-    var failureUrl = (req.body.failureUrl != null ? req.body.failureUrl : localauth.failureUrl);
+    var failureUrl = (req.body.failureUrl != null ? req.body.failureUrl : localauth.loginFailureUrl);
     passport.authenticate('local', function(err, user, info) {
-      if (err) { return next(err); }
-      if (!user) { return res.redirect(failureUrl); }
+      if (err) { 
+        return next(err); 
+      }
+      if (!user) { 
+	req.session.error = "Can not authenicated";
+        return res.redirect(failureUrl); 
+      }
       req.logIn(user, function(err) {
         if (err) { return next(err); }
         return res.redirect(successUrl);
@@ -167,8 +172,8 @@ module.exports = function(params) {
         }
       }
     });
-  }, passport.authenticate('local', { successRedirect: '/#validlogin',
-    failureRedirect: '/#invalidlogin',
+  }, passport.authenticate('local', { successRedirect: localauth.successUrl,
+    failureRedirect: localauth.loginFailureUrl,
     failureFlash: false }) );
 
   //@TODO: create test
@@ -227,8 +232,8 @@ module.exports = function(params) {
   );
 
   app.get('/auth/facebook/callback',
-    passport.authenticate('facebook', { successRedirect: '/#validlogin',
-                                      failureRedirect: '/#invalidlogin' })
+    passport.authenticate('facebook', { successRedirect: localauth.successUrl,
+                                      failureRedirect: localauth.loginFailureUrl })
   );
 
 };
