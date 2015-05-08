@@ -2,7 +2,7 @@
   "author": "Mark Allen <mark@markcallen.com>",
   "name": "passportauthexample",
   "description": "A nodejs passport/express example using local, basic and facebook authenication",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "homepage": "http://www.markcallen.com/",
   "repository": {
     "type": "git",
