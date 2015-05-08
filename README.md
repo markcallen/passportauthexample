@@ -33,7 +33,13 @@ add the following:
 
 node app.js
 
-## Use
+## User Interface
+
+http://localhost:8888
+
+Press New Account
+
+## Command Line
 ### Create account
 
 curl -X POST -d '{"username":"markcallen","password":"admin","email":"mark@markcallen.com","firstname":"Mark","lastname":"Allen"}' -H 'Accept: application/json' -H 'Content-type: application/json' -c cookie.txt http://localhost:8888/api/account
