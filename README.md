@@ -59,6 +59,10 @@ curl -X POST -d 'username=markcallen&password=admin' -c cookies.txt http://local
 
 curl -b cookie.txt http://localhost:8888/api/account
 
+### Create oauth2 client
+
+curl --user markcallen:admin -X POST -d '{"name": "sampleoauth2"}' -H 'Accept: application/json' -H 'Content-type: application/json' http://localhost:8888/api/client
+
 ## Test
 
 in one window start up the app

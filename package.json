@@ -32,7 +32,11 @@
     "passport": "0.2.x",
     "passport-facebook": "2.0.x",
     "passport-http": "0.2.x",
-    "passport-local": "1.0.x"
+    "passport-local": "1.0.x",
+    "oauth2orize": "1.0.x",
+    "passport-http-bearer": "1.0.x",
+    "passport-oauth2-client-password": "0.1.x",
+    "connect-ensure-login": "0.1.x"
   },
   "devDependencies": {
     "assert": "1.1.x",

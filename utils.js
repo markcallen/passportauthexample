@@ -3,6 +3,7 @@ var uuid = require('node-uuid');
 var email = require('config').Email;
 var server = require('config').Server;
 var aws = require('config').AWS;
+var localauth = require('config').LocalAuth;
 
 // Setup SMTP
 //@TODO: need to change this to something that doesn't require AWS keys for testing
@@ -18,6 +19,19 @@ function hash(passwd, salt) {
   return crypto.createHmac('sha256', salt).update(passwd).digest('hex');
 }
 
+function randomValueHex (len) {
+    return crypto.randomBytes(Math.ceil(len/2))
+        .toString('hex') // convert to hexadecimal format
+        .slice(0,len);   // return required number of characters
+}
+
+function randomValueBase64 (len) {
+    return crypto.randomBytes(Math.ceil(len * 3 / 4))
+        .toString('base64')   // convert to base64 format
+        .slice(0, len)        // return required number of characters
+        .replace(/\+/g, '0')  // replace '+' with '0'
+        .replace(/\//g, '0'); // replace '/' with '0'
+}
 
 
 module.exports = {
@@ -25,6 +39,16 @@ module.exports = {
   hash: function(passwd, salt) {
           return hash(passwd, salt);
         },
+
+  randomId: function(length) {
+	      if (! length) { length = 16; };
+              return randomValueHex(length);
+            },
+
+  randomSecret: function(length) {
+  	          if (! length) { length = 12; };
+                  return randomValueBase64(length);
+                },
 
   salt: function() {
           var buffer = new Array(32);
@@ -45,6 +69,16 @@ module.exports = {
 
                  if (callback) { callback(model); }
                },
+
+  
+  checkAuth: function(req, res, next) {
+               if (req.isAuthenticated()) {
+                 return next();
+               } else {
+                 req.session.error = req.baseUrl + " access invalid, please login";
+                 return res.redirect(localauth.loginUrl);
+               }
+             },
 
   ArrayHasJsonEntry: function(arr, obj) {
                        var key = Object.keys(obj)[0];

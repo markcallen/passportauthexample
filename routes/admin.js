@@ -76,4 +76,22 @@ app.delete('/admin/account/:id', function (req, res, next) {
   });
 });
 
+  //@TODO: create test
+  app.put('/admin/client/:id', function (req, res, next){
+    Client.findById(req.params.id, function (err, client) {
+      utils.updateModel(req.body, client, function(client) {
+        client.save(function (err) {
+          if (err) {
+            if (11001 === err.code) {
+              return next("Client Id " + req.body.clientid + " already used");
+            } 
+            return next(err); 
+          } else {
+            return res.send(client);
+          }
+        });
+      });
+    });
+  }); 
+
 };

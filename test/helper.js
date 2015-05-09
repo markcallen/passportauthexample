@@ -35,6 +35,21 @@ module.exports = {
                 models.user.findByIdAndRemove(u.id, function(err, user) {
                   if (cb) { cb(err, user); }
                 });
-              }
+              },
+  stdclient: {
+	       name: "mochaclient"
+             },
+  createClient: function(cb) {
+	          var client = new models.client();
+		  client.save(function(err) {
+                    if (cb) { cb(err, client); }
+		  });
+                },
+  
+  deleteClient: function(c, cb) {
+	          models.client.findByIdAndRemove(c.id, function(err, client) {
+                    if (cb) { cb(err, client); }
+	          });
+                }
 
 };

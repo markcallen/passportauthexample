@@ -105,6 +105,10 @@ module.exports = function(params) {
   app.post('/auth/login', function(req, res, next) {
     var successUrl = (req.body.successUrl != null ? req.body.successUrl : localauth.successUrl);
     var failureUrl = (req.body.failureUrl != null ? req.body.failureUrl : localauth.loginFailureUrl);
+
+    if (req.session.returnTo) {
+      successUrl = req.session.returnTo;
+    }
     passport.authenticate('local', function(err, user, info) {
       if (err) { 
         return next(err); 
