@@ -14,6 +14,7 @@ module.exports = function(params) {
   var User = params.models.user;
   var AccessToken = params.models.accesstoken;
   var AuthorizationCode = params.models.authorizationcode;
+  var Permission = params.models.permission;
   var passport = params.passport;
 
 passport.use(new ClientPasswordStrategy(
@@ -97,9 +98,6 @@ server.grant(oauth2orize.grant.token(function(client, user, ares, done) {
 }));
 
 server.exchange(oauth2orize.exchange.code(function(client, code, redirectURI, done) {
-
-  console.log("oauth2orize.exchange.code");
-
   AuthorizationCode.findOne({code: code}, function(err, authCode) {
     if (err) { return done(err); }
     if (client.id !== authCode.clientId) { return done(null, false); }
@@ -182,14 +180,35 @@ server.exchange(oauth2orize.exchange.clientCredentials(function(client, scope, d
         return done(null, client, redirectURI);
       });
     }),
-    function(req, res){
-      res.render('dialog', { transactionID: req.oauth2.transactionID, user: req.user, client: req.oauth2.client });
-    }
+    function(req, res, next){
+      Permission.find({clientId: req.oauth2.client.id, userId: req.user.id}, function(err, permissions) {
+	if (permissions.length == 0) {
+          return res.render('dialog', { transactionID: req.oauth2.transactionID, user: req.user, client: req.oauth2.client });
+	} else {
+          req.body.transaction_id = req.oauth2.transactionID;
+          next();
+	}
+      });
+    },
+    server.decision()
 
   );
 
   app.post('/dialog/authorize/decision', 
     login.ensureLoggedIn(localAuth.loginUrl),
+    function(req, res, next) {
+      if (! req.body.cancel) {
+        var permission = new Permission();
+	permission.clientId = req.body.client_id;
+	permission.userId = req.user.id;
+	permission.save(function(err) {
+	  if (err) {
+            console.log(err);
+	  }
+	});
+      }
+      next();
+    },
     server.decision()
   );
 

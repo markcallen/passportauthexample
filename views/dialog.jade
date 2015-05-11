@@ -14,6 +14,7 @@ block content
 
   form(action='/dialog/authorize/decision',method='post')
     input(type='hidden', name='transaction_id', value=transactionID)
+    input(type='hidden', name='client_id', value=client.id)
     .btn-group
       input(type='submit', value='Allow', id='allow', class='btn btn-default')
       input(type='submit', name='cancel', value='Deny', id='deny', class='btn btn-default')
