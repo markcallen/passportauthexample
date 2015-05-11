@@ -191,7 +191,6 @@ server.exchange(oauth2orize.exchange.clientCredentials(function(client, scope, d
       });
     },
     server.decision()
-
   );
 
   app.post('/dialog/authorize/decision', 
